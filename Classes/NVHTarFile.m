@@ -80,10 +80,9 @@
 
 - (BOOL)createFilesAndDirectoriesAtPath:(NSString *)path withProgress:(NSProgress*)progress error:(NSError **)error
 {
-    NSFileManager *filemanager = [NSFileManager defaultManager];
+    NSFileHandle *fileHandle = [NSFileHandle fileHandleForReadingAtPath:self.filePath];
     
-    if ([filemanager fileExistsAtPath:self.filePath]) {
-        NSFileHandle *fileHandle = [NSFileHandle fileHandleForReadingAtPath:self.filePath];
+    if (fileHandle != nil) {
         BOOL result = [self createFilesAndDirectoriesAtPath:path withTarObject:fileHandle size:self.fileSize progress:progress error:error];
         [fileHandle closeFile];
         return result;
