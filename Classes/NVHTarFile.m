@@ -227,9 +227,12 @@
 
 + (char)typeForObject:(id)object atOffset:(unsigned long long)offset
 {
-    char type;
+    char type = '_';
     NSUInteger location = (NSUInteger)offset + TAR_TYPE_POSITION;
-    memcpy(&type, [self dataForObject:object inRange:NSMakeRange(location, 1) orLocation:offset + TAR_TYPE_POSITION andLength:1].bytes, 1);
+    NSData *data = [self dataForObject:object inRange:NSMakeRange(location, 1) orLocation:offset + TAR_TYPE_POSITION andLength:1];
+    if (data != nil) {
+        memcpy(&type, data.bytes, 1);
+    }
     return type;
 }
 
