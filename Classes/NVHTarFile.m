@@ -230,7 +230,7 @@
     char type = '_';
     NSUInteger location = (NSUInteger)offset + TAR_TYPE_POSITION;
     NSData *data = [self dataForObject:object inRange:NSMakeRange(location, 1) orLocation:offset + TAR_TYPE_POSITION andLength:1];
-    if (data != nil) {
+    if (data != nil && data.bytes != NULL) {
         memcpy(&type, data.bytes, 1);
     }
     return type;
