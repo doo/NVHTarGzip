@@ -68,7 +68,7 @@ NSString * const NVHGzipFileZlibErrorDomain = @"io.nvh.targzip.zlib.error";
 	//Convert source path into something a C library can handle
 	const char* sourceCString = [sourcePath cStringUsingEncoding:NSASCIIStringEncoding];
     
-	gzFile *source = gzopen(sourceCString, "rb");
+	gzFile source = gzopen(sourceCString, "rb");
     
 	unsigned int length = 1024*256;	//Thats like 256Kb
 	void *buffer = malloc(length);
